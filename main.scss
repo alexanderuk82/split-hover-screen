@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,700;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+@mixin btnHover($btnSide) {
+  @if ($btnSide == 'left') {
+    .split__btn:hover {
+      border: 2px solid hsl(356, 91%, 78%);
+      background-color: hsl(356, 91%, 78%);
+    }
+  }
+  @if ($btnSide == 'right') {
+    .split__btn:hover {
+      border: 2px solid hsl(269, 23%, 50%);
+      background-color: hsl(269, 23%, 50%);
+    }
+  }
+}
+
+@mixin sideSplit($side) {
+  display: grid;
+  place-content: center;
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  padding: 0 9rem;
+  row-gap: 2rem;
+
+  @if ($side == 'left') {
+    left: 0;
+    background: url('/images/summer.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center bottom;
+    @include btnHover($side);
+  }
+
+  @if ($side == 'right') {
+    right: 0;
+    background: url('/images/pink-background-2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    @include btnHover($side);
+  }
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+.container {
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(224, 224, 224);
+}
+
+.split {
+  overflow: hidden;
+  height: 100vh;
+  position: relative;
+
+  &__left {
+    @include sideSplit('left');
+    transition: all 1.2s ease;
+  }
+
+  &__right {
+    @include sideSplit('right');
+    transition: all 1.2s ease;
+  }
+
+  &__btn {
+    margin-top: 2rem;
+    width: 20rem;
+    padding: 1.5rem;
+    border: 2px solid #fff;
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--icon {
+      margin-left: 1rem;
+    }
+  }
+
+  h1 {
+    font-size: 10rem;
+    font-style: italic;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 9rem;
+  }
+  p {
+    font-size: 1.8rem;
+    color: #fff;
+  }
+}
+
+.hover-left .split__left {
+  width: 75%;
+}
+.hover-left .split__right {
+  width: 25%;
+  h1 {
+    font-size: 5rem;
+    line-height: 6rem;
+  }
+  p {
+    font-size: 1.6rem;
+  }
+}
+.hover-right .split__right {
+  width: 75%;
+}
+.hover-right .split__left {
+  width: 25%;
+  h1 {
+    font-size: 5rem;
+    line-height: 6rem;
+  }
+  p {
+    font-size: 1.6rem;
+  }
+}
